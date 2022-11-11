@@ -40,6 +40,13 @@ class Carro{
     }
 }
 
+class Corrida{
+    NomeLocal
+    TipoCorrida
+    DistanciaCorrida
+    VencedorCorrida
+}
+
 let carro = new Carro()
 let NomeEquipes = []
 let Potencias = []
