@@ -29,14 +29,18 @@ corrida.
 */
 
 class Carro{
-    NomeEquipe
-    Potencia
-    VelocidadeMaxima
-    Aceleracao
+    NomeEquipe = []
+    Potencia = []
+    VelocidadeMaxima = []
+    Aceleracao = []
 
-    MetrosSegundos(){
-        let resultado = distancia / (this.VelocidadeMaxima / this.Aceleracao) 
-        return resultado;
+    MetrosSegundos(distancia){
+        let MetrosSegundos = []
+        for (let index = 0; index < 3; index++) {
+                MetrosSegundos[index] = distancia / (this.VelocidadeMaxima[index] / this.Aceleracao[index])
+        }
+
+        corrida1.VerificarVencedor(MetrosSegundos)
     }
 }
 
@@ -45,21 +49,35 @@ class Corrida{
     TipoCorrida
     DistanciaCorrida
     VencedorCorrida
+
+    VerificarVencedor(VencedorCorrida){
+        VencedorCorrida.sort((a, b) => a - b);
+
+        this.VencedorCorrida = VencedorCorrida[0]
+    }
+
+    
 }
 
+let corrida1 = new Corrida()
+corrida1.DistanciaCorrida = parseInt(prompt("Qual a distância da corrida?"))
+corrida1.NomeLocal = "Veneza"
+corrida1.TipoCorrida = "Formula 1"
+
 let carro = new Carro()
-let NomeEquipes = []
-let Potencias = []
-let VelocidadeMaximas = []
-let Aceleracaos = []
-let indexGeral = 0
+carro.NomeEquipe[0] = "ferrari"
+carro.Potencia[0] = 450
+carro.VelocidadeMaxima[0] = 390
+carro.Aceleracao[0] = 6
 
-carro.NomeEquipe = "ferrari"
-carro.Potencia = 450
-carro.VelocidadeMaxima = 390
-carro.Aceleracao = 6
+carro.NomeEquipe[1] = "Mercedes"
+carro.Potencia[1] = 400
+carro.VelocidadeMaxima[1] = 400
+carro.Aceleracao[1] = 7
 
-NomeEquipes[indexGeral] = carro.NomeEquipe
-Potencias[indexGeral] = carro.Potencia
-VelocidadeMaximas[indexGeral] = carro.VelocidadeMaxima
-Aceleracaos[indexGeral] = carro.Aceleracao
+carro.NomeEquipe[2] = "Uno"
+carro.Potencia[2] = 420
+carro.VelocidadeMaxima[2] = 450
+carro.Aceleracao[2] = 4
+
+carro.MetrosSegundos(corrida1.DistanciaCorrida)
