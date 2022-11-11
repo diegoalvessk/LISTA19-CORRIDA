@@ -40,7 +40,7 @@ class Carro{
                 MetrosSegundos[index] = distancia / (this.VelocidadeMaxima[index] / this.Aceleracao[index])
         }
 
-        corrida1.VerificarVencedor(MetrosSegundos)
+        return MetrosSegundos;
     }
 }
 
@@ -51,12 +51,18 @@ class Corrida{
     VencedorCorrida
 
     VerificarVencedor(VencedorCorrida){
-        VencedorCorrida.sort((a, b) => a - b);
-
-        this.VencedorCorrida = VencedorCorrida[0]
+        let min = Math.min(...VencedorCorrida)
+        console.log(min)
+        let posicaoGanhador = VencedorCorrida.indexOf(min)
+        console.log(posicaoGanhador)
+        return posicaoGanhador;
     }
 
-    
+    ExibirGanhador(posicaoGanhador, carro){
+        this.VencedorCorrida = carro.NomeEquipe[posicaoGanhador]
+        alert("o vencedor da corrida é a equipe: " + this.VencedorCorrida)
+    }
+
 }
 
 let corrida1 = new Corrida()
@@ -72,12 +78,16 @@ carro.Aceleracao[0] = 6
 
 carro.NomeEquipe[1] = "Mercedes"
 carro.Potencia[1] = 400
-carro.VelocidadeMaxima[1] = 400
-carro.Aceleracao[1] = 7
+carro.VelocidadeMaxima[1] = 2000
+carro.Aceleracao[1] = 1
 
 carro.NomeEquipe[2] = "Uno"
 carro.Potencia[2] = 420
 carro.VelocidadeMaxima[2] = 450
 carro.Aceleracao[2] = 4
 
-carro.MetrosSegundos(corrida1.DistanciaCorrida)
+let retorno = carro.MetrosSegundos(corrida1.DistanciaCorrida)
+
+let posicaoVencedor = corrida1.VerificarVencedor(retorno)
+corrida1.ExibirGanhador(posicaoVencedor, carro)
+
